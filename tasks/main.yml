@@ -32,10 +32,10 @@
     efi_path: "{{ __bootloader_efi_dir.stat.exists }}"
   set_fact:
     __bootloader_grub_conf: >-
-      {{ efi_path | ternary(__bootloader_uefi_conf_dir ~ 'grub.cfg',
+      {{ efi_path | ternary(__bootloader_uefi_conf_dir|trim ~ 'grub.cfg',
       '/boot/grub2/grub.cfg') }}
     __bootloader_user_conf: >-
-      {{ efi_path | ternary(__bootloader_uefi_conf_dir ~ 'user.cfg',
+      {{ efi_path | ternary(__bootloader_uefi_conf_dir|trim ~ 'user.cfg',
       '/boot/grub2/user.cfg') }}
 
 - name: Update boot loader password
